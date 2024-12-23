@@ -1,2 +1,2 @@
 # howto
-Code for basic UI elements
+Code examples for basic UI elements
