@@ -14,7 +14,9 @@ window.onload = () => {
     { id: 12, name: "Richard", age: 37 },
   ];
 
-  const renderTable = (data) => {
+  const maxRowsOnPage = 5;
+
+  const renderTable = (data, rowsOnPage) => {
     const tableHeaders = Object.keys(data[0]);
 
     const thead =
@@ -42,5 +44,22 @@ window.onload = () => {
     }
   };
 
-  renderTable(data);
+  const renderButtons = (data, rowsOnPage) => {
+    const paginationBlock = document.querySelector("#pagination");
+    const pagesCount = Math.ceil(data.length / rowsOnPage);
+
+    const buttonHandler = () => {
+      console.log("Hello");
+    };
+
+    for (let i = 1; i <= pagesCount; i += 1) {
+      const button = document.createElement("button");
+      button.innerHTML = i;
+      button.addEventListener("click", buttonHandler);
+      paginationBlock.appendChild(button);
+    }
+  };
+
+  renderTable(data, maxRowsOnPage);
+  renderButtons(data, maxRowsOnPage);
 };
