@@ -1,2 +1,2 @@
 # howto
-Code examples for basic UI elements
+Code examples for basic UI elements with vanilla JS
