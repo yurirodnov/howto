@@ -17,16 +17,19 @@ window.onload = () => {
   const renderTable = (data) => {
     const tableHeaders = Object.keys(data[0]);
 
-    const thead = document.querySelector("thead");
+    const thead =
+      document.querySelector("thead") || document.createElement("thead");
     const headerTr = document.createElement("tr");
     for (const heading of tableHeaders) {
       const th = document.createElement("th");
       th.innerHTML = heading;
       headerTr.appendChild(th);
     }
+    thead.appendChild(headerTr);
 
-    const tbody = document.querySelector("tbody");
-    console.log(tbody);
+    const tbody =
+      document.querySelector("tbody") || document.createElement("tbody");
+
     for (const row of data) {
       const bodyTr = document.createElement("tr");
       for (const prop of Object.keys(row)) {
@@ -34,11 +37,9 @@ window.onload = () => {
         bodyTd.textContent = row[prop];
         bodyTr.appendChild(bodyTd);
       }
-      console.log(bodyTr);
+
       tbody.appendChild(bodyTr);
     }
-
-    thead.appendChild(headerTr);
   };
 
   renderTable(data);
