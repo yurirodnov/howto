@@ -1,2 +1,2 @@
 # howto
-Code examples for basic UI elements with vanilla JS
+Code examples for UI elements, css- and canvas-animations with vanilla JS
