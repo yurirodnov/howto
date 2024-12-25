@@ -18,7 +18,7 @@ window.onload = () => {
     { id: 16, name: "Lena", age: 28 },
   ];
 
-  const maxRowsOnPage = 10;
+  const maxRowsOnPage = 5;
   let currentPage = 1;
 
   const thead =
