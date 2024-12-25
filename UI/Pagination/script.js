@@ -63,6 +63,14 @@ window.onload = () => {
       const selectedPage = +e.target.textContent;
       thead.innerHTML = "";
       tbody.innerHTML = "";
+      const allButtons = Array.from(document.getElementsByTagName("button"));
+      for (let button of allButtons) {
+        if (button === e.target) {
+          button.classList.add("selected");
+        } else {
+          button.classList.remove("selected");
+        }
+      }
 
       renderTable(data, maxRowsOnPage, selectedPage);
     };
@@ -70,6 +78,7 @@ window.onload = () => {
     for (let i = 1; i <= pagesCount; i += 1) {
       const button = document.createElement("button");
       button.innerHTML = i;
+      button.classList.add("button");
       button.addEventListener("click", buttonHandler);
       paginationBlock.appendChild(button);
     }
