@@ -1,3 +1,7 @@
+:root {
+  --gallery-shadow: 4px 4px 10px 1px rgba(255, 255, 255, 0.2);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -31,9 +35,9 @@ body {
 
 .slider-gallery {
   width: 1000px;
-  -webkit-box-shadow: 4px 4px 10px 1px rgba(255, 255, 255, 0.2);
-  -moz-box-shadow: 4px 4px 10px 1px rgba(255, 255, 255, 0.2);
-  box-shadow: 4px 4px 10px 1px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: var(--gallery-shadow);
+  -moz-box-shadow: var(--gallery-shadow);
+  box-shadow: var(--gallery-shadow);
 }
 
 .slider-buttons {
