@@ -2,7 +2,7 @@ window.onload = () => {
   const images = ["cat0.jpg", "cat1.jpg", "cat2.jpg", "cat3.jpg", "cat4.jpg"];
   const imagesLength = images.length;
   const currentImageNumber = document.getElementById("current-image");
-  const allImagesNumber = document.getElementById("all-images");
+  const allImagesNumber = document.getElementById("total-images");
   const sliderGallery = document.getElementById("slider-gallery");
   const image = document.createElement("img");
   let startImagePosition = 0;
