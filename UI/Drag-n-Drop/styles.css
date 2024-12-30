@@ -28,24 +28,23 @@ body {
   background-image: url("./img/water.png");
   background-repeat: repeat;
   background-size: 100px;
-  width: 1100px;
-  height: 620px;
+  width: 1000px;
+  height: 600px;
   border: 1px solid grey;
 }
 
 .ground {
   position: absolute;
-  top: 150px;
-  right: 100px;
+  top: 200px;
+  right: 0;
   background-image: url("./img/grass.png");
-  width: 450px;
-  height: 220px;
-  border: 1px solid white;
+  width: 400px;
+  height: 200px;
 }
 
 .cat {
   position: absolute;
-  width: 200px;
+  width: 100px;
   transform: scale(-1, 1);
 }
 

@@ -1,5 +1,9 @@
 window.onload = () => {
+  const text = document.getElementById("text");
+  text.textContent = "Save this kitten!";
   const cat = document.getElementById("cat");
+  const ground = document.getElementById("ground");
+  const water = document.getElementById("water");
 
   const onMouseDown = (e) => {
     const catShiftX = e.clientX - cat.getBoundingClientRect().left;
@@ -25,6 +29,15 @@ window.onload = () => {
     const onMouseUp = () => {
       document.removeEventListener("mousemove", onMouseMoving);
       cat.onmouseup = null;
+      if (
+        cat.getBoundingClientRect().x >
+          water.offsetWidth - ground.offsetWidth &&
+        cat.getBoundingClientRect().y >
+          water.offsetHeight - ground.offsetHeight - cat.offsetHeight
+      ) {
+        text.textContent = "";
+        text.textContent = "Great!";
+      }
     };
 
     cat.addEventListener("mouseup", onMouseUp);
