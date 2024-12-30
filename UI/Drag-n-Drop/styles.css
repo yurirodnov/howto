@@ -35,6 +35,7 @@ body {
 
 .ground {
   position: absolute;
+  top: 150px;
   right: 100px;
   background-image: url("./img/grass.png");
   width: 450px;
@@ -43,6 +44,7 @@ body {
 }
 
 .cat {
+  position: absolute;
   width: 200px;
   transform: scale(-1, 1);
 }
