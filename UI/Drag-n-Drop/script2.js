@@ -33,10 +33,15 @@ window.onload = () => {
         cat.getBoundingClientRect().x >
           water.offsetWidth - ground.offsetWidth &&
         cat.getBoundingClientRect().y >
-          water.offsetHeight - ground.offsetHeight - cat.offsetHeight
+          water.offsetHeight - ground.offsetHeight - cat.offsetHeight &&
+        cat.getBoundingClientRect().bottom <
+          ground.offsetHeight + (water.offsetHeight - ground.offsetHeight)
       ) {
         text.textContent = "";
         text.textContent = "Great!";
+      } else {
+        text.textContent = "";
+        text.textContent = "Save this kitten!";
       }
     };
 
