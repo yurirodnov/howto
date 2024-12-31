@@ -34,6 +34,7 @@ window.onload = () => {
   for (let i = 1; i <= daysInMonth(date.getMonth(), year); i += 1) {
     console.log(i);
     const dayOfMonth = document.createElement("div");
+    dayOfMonth.classList.add("day-of-month");
     dayOfMonth.textContent = i;
     calendarMonth.appendChild(dayOfMonth);
   }

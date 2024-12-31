@@ -25,7 +25,7 @@ body {
   flex-direction: column;
   gap: 40px;
   width: 600px;
-  height: 600px;
+
   background-color: rgb(33, 33, 33);
   border-radius: 20px;
   padding: 30px;
@@ -99,16 +99,30 @@ body {
 }
 
 .calendar-week {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   color: rgb(182, 182, 182);
   font-weight: bold;
   /* border: 1px solid white; */
+}
+
+.calendar-week-day {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .calendar-month {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-size: 1.2em;
+  color: white;
+}
+
+.day-of-month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
