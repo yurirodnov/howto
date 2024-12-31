@@ -1,5 +1,6 @@
 :root {
-  --transparent-arrow-border: 20px solid transparent;
+  --transparent-arrow-border: 10px solid transparent;
+  --solid-arrow-border: 15px solid;
 }
 
 * {
@@ -24,7 +25,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 600px;
+  width: auto;
 
   background-color: rgb(33, 33, 33);
   border-radius: 20px;
@@ -52,7 +53,7 @@ body {
   height: 0;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-right: 30px solid #6e18c0;
+  border-right: var(--solid-arrow-border) #6616b0;
 }
 
 .prev:hover {
@@ -60,7 +61,7 @@ body {
   cursor: pointer;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-right: 30px solid #6616b0;
+  border-right: var(--solid-arrow-border) #7c1dd4;
 }
 
 .prev:active {
@@ -69,7 +70,7 @@ body {
   cursor: pointer;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-right: 30px solid #6616b0;
+  border-right: var(--solid-arrow-border) #6616b0;
 }
 
 .next {
@@ -78,7 +79,7 @@ body {
   height: 0;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-left: 30px solid #6e18c0;
+  border-left: var(--solid-arrow-border) #6616b0;
 }
 
 .next:hover {
@@ -86,7 +87,7 @@ body {
   cursor: pointer;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-left: 30px solid #6616b0;
+  border-left: var(--solid-arrow-border) #7c1dd4;
 }
 
 .next:active {
@@ -95,13 +96,13 @@ body {
   cursor: pointer;
   border-top: var(--transparent-arrow-border);
   border-bottom: var(--transparent-arrow-border);
-  border-left: 30px solid #6616b0;
+  border-left: var(--solid-arrow-border) #6616b0;
 }
 
 .calendar-week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  color: rgb(182, 182, 182);
+  color: rgb(176, 176, 176);
   font-weight: bold;
   /* border: 1px solid white; */
 }
@@ -121,8 +122,16 @@ body {
 }
 
 .day-of-month {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  transition: background-color 0.8s ease;
+}
+
+.day-of-month:hover {
+  cursor: pointer;
+  background-color: rgb(50, 50, 50);
 }

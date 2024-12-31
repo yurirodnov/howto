@@ -28,7 +28,9 @@ window.onload = () => {
   };
 
   const date = new Date();
-  const month = date.toLocaleString("default", { month: "long" });
+  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    date
+  );
   const year = date.getFullYear();
 
   for (let i = 1; i <= daysInMonth(date.getMonth(), year); i += 1) {
