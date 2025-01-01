@@ -1,24 +1,20 @@
 window.onload = () => {
-  const calendar = document.getElementById("calendar");
-  const calendarHead = document.getElementById("calendar-head");
-  const calendarHeaderMonth = document.getElementById("header-month");
-  const calendarYearMonth = document.getElementById("header-year");
-  const calendarWeek = document.getElementById("calendar-week-days");
-  const calendarWeekDay = document.getElementById("calendar-week-day");
+  const calendarHeadMonth = document.getElementById("header-month");
+  const calendarHeadYear = document.getElementById("header-year");
   const calendarMonth = document.getElementById("calendar-month");
-  const calendarSelectedDate = document.getElementById(
-    "calendar-selected-date"
-  );
   const prev = document.getElementById("prev");
   const next = document.getElementById("next");
+
+  let date = new Date();
+  let month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
+  let year = date.getFullYear();
+  let firstDayOfMonth = date.getDay();
+  let today = date.getDate();
 
   const handleArrowClick = (e) => {
     console.log(e.target.id);
   };
 
-  const renderMonthDays = () => {};
-
-  // uppercase first letter for months
   const upperMonth = (str) => {
     return str[0].toLocaleUpperCase() + str.slice(1);
   };
@@ -27,23 +23,30 @@ window.onload = () => {
     return new Date(year, month, 0).getDate();
   };
 
-  const date = new Date();
-  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
-    date
-  );
-  const year = date.getFullYear();
+  const renderHeaderDate = () => {
+    calendarHeadMonth.textContent = upperMonth(month);
+    calendarHeadYear.textContent = year;
+  };
+  renderHeaderDate();
 
-  for (let i = 1; i <= daysInMonth(date.getMonth(), year); i += 1) {
-    console.log(i);
-    const dayOfMonth = document.createElement("div");
-    dayOfMonth.classList.add("day-of-month");
-    dayOfMonth.textContent = i;
-    calendarMonth.appendChild(dayOfMonth);
-  }
+  const renderMonthDays = () => {
+    for (let i = 1; i < firstDayOfMonth; i += 1) {
+      const dayOfPreviousMonth = document.createElement("div");
+      dayOfPreviousMonth.classList.add("calendar-month-day");
+      calendarMonth.appendChild(dayOfPreviousMonth);
+    }
 
-  console.log(`Selected year is ${year} and month is ${month}`);
-  calendarHeaderMonth.textContent = upperMonth(month);
-  calendarYearMonth.textContent = year;
+    for (let i = 1; i <= daysInMonth(date.getMonth(), date.getFullYear()); i += 1) {
+      const calendarMonthDay = document.createElement("div");
+      calendarMonthDay.textContent += i;
+      if (i === today) {
+        calendarMonthDay.classList.add("calendar-month-today");
+      }
+      calendarMonthDay.classList.add("calendar-month-day");
+      calendarMonth.appendChild(calendarMonthDay);
+    }
+  };
+  renderMonthDays();
 
   prev.addEventListener("click", handleArrowClick);
   next.addEventListener("click", handleArrowClick);

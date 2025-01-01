@@ -118,10 +118,11 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-size: 1.2em;
+  font-weight: bold;
   color: white;
 }
 
-.day-of-month {
+.calendar-month-day {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -131,7 +132,18 @@ body {
   transition: background-color 0.8s ease;
 }
 
-.day-of-month:hover {
+.calendar-month-day:hover {
   cursor: pointer;
   background-color: rgb(50, 50, 50);
+}
+
+.calendar-month-today {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: #7c1dd4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.8s ease;
 }
