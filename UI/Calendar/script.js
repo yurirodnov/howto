@@ -4,15 +4,40 @@ window.onload = () => {
   const calendarMonth = document.getElementById("calendar-month");
   const prev = document.getElementById("prev");
   const next = document.getElementById("next");
+  const selectedDate = document.getElementById("calendar-selected-date");
 
   let date = new Date();
-  let month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
+  let month = date.getMonth();
+  let formattedMonth = new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
   let year = date.getFullYear();
-  let firstDayOfMonth = date.getDay();
+  let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   let today = date.getDate();
 
   const handleArrowClick = (e) => {
-    console.log(e.target.id);
+    calendarMonth.innerHTML = "";
+    calendarHeadMonth.innerHTML = "";
+    calendarHeadYear.innerHTML = "";
+
+    if (e.target.id === "prev") {
+      console.log(month);
+      if (month === 0) {
+        month = 11;
+        year -= 1;
+      } else {
+        month -= 1;
+      }
+    } else if (e.target.id === "next") {
+      console.log(month);
+      if (month === 11) {
+        month = 0;
+        year += 1;
+      } else {
+        month += 1;
+      }
+    }
+
+    renderHeaderDate();
+    renderMonthDays();
   };
 
   const upperMonth = (str) => {
@@ -24,7 +49,7 @@ window.onload = () => {
   };
 
   const renderHeaderDate = () => {
-    calendarHeadMonth.textContent = upperMonth(month);
+    calendarHeadMonth.textContent = upperMonth(formattedMonth);
     calendarHeadYear.textContent = year;
   };
   renderHeaderDate();
@@ -36,7 +61,7 @@ window.onload = () => {
       calendarMonth.appendChild(dayOfPreviousMonth);
     }
 
-    for (let i = 1; i <= daysInMonth(date.getMonth(), date.getFullYear()); i += 1) {
+    for (let i = 1; i <= daysInMonth(month, year); i += 1) {
       const calendarMonthDay = document.createElement("div");
       calendarMonthDay.textContent += i;
       if (i === today) {
@@ -47,6 +72,11 @@ window.onload = () => {
     }
   };
   renderMonthDays();
+
+  const setSelectedDate = () => {
+    selectedDate.textContent = `${today < 10 ? "0" + today : today} ${month} ${year}`;
+  };
+  setSelectedDate();
 
   prev.addEventListener("click", handleArrowClick);
   next.addEventListener("click", handleArrowClick);

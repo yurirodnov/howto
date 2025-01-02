@@ -24,9 +24,9 @@ body {
 .calendar {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 40px;
   width: auto;
-
   background-color: rgb(33, 33, 33);
   border-radius: 20px;
   padding: 30px;
@@ -141,7 +141,7 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  color: #7c1dd4;
+  color: #b773f6;
   display: flex;
   align-items: center;
   justify-content: center;
