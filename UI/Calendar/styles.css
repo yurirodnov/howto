@@ -28,7 +28,7 @@ body {
   width: auto;
   background-color: rgb(33, 33, 33);
   border-radius: 20px;
-  padding: 30px 30px;
+  padding: 40px 30px;
   margin: 6em;
 }
 
@@ -38,7 +38,6 @@ body {
   align-items: center;
   gap: 10px;
   color: white;
-  /* border: 1px solid white; */
 }
 
 .header-date {
@@ -111,7 +110,6 @@ body {
   margin-top: 50px;
   color: rgb(176, 176, 176);
   font-weight: bold;
-  /* border: 1px solid white; */
 }
 
 .calendar-week-day {
