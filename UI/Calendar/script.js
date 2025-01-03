@@ -64,6 +64,7 @@ window.onload = () => {
       }
       month -= 1;
 
+      date.setFullYear(year);
       date.setMonth(month);
       renderData();
     } else if (e.target.id === "next") {
@@ -73,6 +74,7 @@ window.onload = () => {
       }
       month += 1;
 
+      date.setFullYear(year);
       date.setMonth(month);
       renderData();
     }
