@@ -1,44 +1,9 @@
 window.onload = () => {
-  const calendarHeadMonth = document.getElementById("header-month");
-  const calendarHeadYear = document.getElementById("header-year");
+  const calendarHeader = document.getElementById("header-date");
   const calendarMonth = document.getElementById("calendar-month");
   const prev = document.getElementById("prev");
   const next = document.getElementById("next");
   const selectedDate = document.getElementById("calendar-selected-date");
-
-  let date = new Date();
-  let month = date.getMonth();
-  let formattedMonth = new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
-  let year = date.getFullYear();
-  let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  let today = date.getDate();
-
-  const handleArrowClick = (e) => {
-    calendarMonth.innerHTML = "";
-    calendarHeadMonth.innerHTML = "";
-    calendarHeadYear.innerHTML = "";
-
-    if (e.target.id === "prev") {
-      console.log(month);
-      if (month === 0) {
-        month = 11;
-        year -= 1;
-      } else {
-        month -= 1;
-      }
-    } else if (e.target.id === "next") {
-      console.log(month);
-      if (month === 11) {
-        month = 0;
-        year += 1;
-      } else {
-        month += 1;
-      }
-    }
-
-    renderHeaderDate();
-    renderMonthDays();
-  };
 
   const upperMonth = (str) => {
     return str[0].toLocaleUpperCase() + str.slice(1);
@@ -48,35 +13,75 @@ window.onload = () => {
     return new Date(year, month, 0).getDate();
   };
 
-  const renderHeaderDate = () => {
-    calendarHeadMonth.textContent = upperMonth(formattedMonth);
-    calendarHeadYear.textContent = year;
-  };
-  renderHeaderDate();
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth();
 
-  const renderMonthDays = () => {
-    for (let i = 1; i < firstDayOfMonth; i += 1) {
-      const dayOfPreviousMonth = document.createElement("div");
-      dayOfPreviousMonth.classList.add("calendar-month-day");
-      calendarMonth.appendChild(dayOfPreviousMonth);
+  const renderData = () => {
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const daysInMonth = lastDayOfMonth.getDate();
+    const firstDayPosition = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
+    const today = new Date().getDate();
+    console.log(firstDayPosition);
+
+    const dateForHeader = date.toLocaleString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+
+    calendarHeader.textContent = dateForHeader;
+
+    for (let i = 1; i < firstDayPosition; i += 1) {
+      const previousDay = document.createElement("div");
+      previousDay.classList.add("calendar-month-day");
+      calendarMonth.appendChild(previousDay);
     }
 
-    for (let i = 1; i <= daysInMonth(month, year); i += 1) {
-      const calendarMonthDay = document.createElement("div");
-      calendarMonthDay.textContent += i;
-      if (i === today) {
-        calendarMonthDay.classList.add("calendar-month-today");
+    for (let i = 1; i <= daysInMonth; i += 1) {
+      const dayOfMonth = document.createElement("div");
+      if (today === i && month === new Date().getMonth()) {
+        dayOfMonth.classList.add("calendar-month-today");
+      } else {
+        dayOfMonth.classList.add("calendar-month-day");
       }
-      calendarMonthDay.classList.add("calendar-month-day");
-      calendarMonth.appendChild(calendarMonthDay);
+
+      dayOfMonth.textContent = i;
+      calendarMonth.appendChild(dayOfMonth);
     }
   };
-  renderMonthDays();
 
-  const setSelectedDate = () => {
-    selectedDate.textContent = `${today < 10 ? "0" + today : today} ${month} ${year}`;
+  renderData();
+
+  const handleArrowClick = (e) => {
+    calendarHeader.innerHTML = "";
+    calendarMonth.innerHTML = "";
+
+    if (e.target.id === "prev") {
+      if (month < 0) {
+        month = 11;
+        year -= 1;
+      }
+      month -= 1;
+
+      date.setMonth(month);
+      renderData();
+    } else if (e.target.id === "next") {
+      if (month > 11) {
+        month = 0;
+        year += 1;
+      }
+      month += 1;
+
+      date.setMonth(month);
+      renderData();
+    }
   };
-  setSelectedDate();
+
+  // const setSelectedDate = () => {
+  //   selectedDate.textContent = `${today < 10 ? "0" + today : today} ${month} ${year}`;
+  // };
+  // setSelectedDate();
 
   prev.addEventListener("click", handleArrowClick);
   next.addEventListener("click", handleArrowClick);
